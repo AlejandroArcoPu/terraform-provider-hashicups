@@ -1,0 +1,32 @@
+terraform {
+  required_providers {
+    hashicups = {
+      source = "hashicorp.com/edu/hashicups"
+    }
+  }
+}
+
+provider "hashicups" {
+  host     = "http://localhost:19090"
+  username = "education"
+  password = "test123"
+}
+
+resource "hashicups_order" "prueba" {
+  items = [{
+    coffee = {
+      id = 3
+    }
+    quantity = 2
+    }, {
+    coffee = {
+      id = 2
+    }
+    quantity = 3
+    }
+  ]
+}
+
+output "edu_order" {
+  value = hashicups_order.prueba
+}
